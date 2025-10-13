@@ -8,11 +8,11 @@ function load() {
     nomes = [];
   }
 }
+//utils
 function save() {
   localStorage.setItem("nomes", JSON.stringify(nomes));
 }
 
-// ===== Utilidades =====
 const byId = (id) => document.getElementById(id);
 const msg = byId("msg");
 const lista = byId("lista");
@@ -40,7 +40,7 @@ function indexOfName(nome, ignoreIndex = -1) {
   return -1;
 }
 
-// ===== CRUD =====
+// CRUD 
 function addName(nome) {
   const n = normalize(nome);
   if (!n) {
@@ -87,7 +87,7 @@ function editName(index) {
   showMsg("Nome atualizado!");
 }
 
-// ===== Renderização =====
+// Renderização
 function renderList(filtro = "") {
   const f = normalize(filtro).toLowerCase();
   lista.innerHTML = "";
@@ -115,7 +115,7 @@ function renderList(filtro = "") {
   }
 }
 
-// ===== Bootstrap =====
+// Bootstrap
 load();
 renderList();
 
@@ -127,7 +127,7 @@ byId("form-add").addEventListener("submit", (e) => {
   inputNome.focus();
 });
 
-// Busca ao digitar (filtro em tempo real)
+// Busca ao digitar
 inputBusca.addEventListener("input", (e) => {
   renderList(e.target.value);
 });
@@ -143,7 +143,7 @@ btnLimpar.addEventListener("click", () => {
   showMsg("Lista zerada.");
 });
 
-// ===== Tema (claro/escuro) =====
+//Tema (claro/escuro)
 const THEME_KEY = "theme";
 const root = document.documentElement;
 const btnTheme = document.getElementById("btn-theme");
@@ -177,7 +177,7 @@ applyTheme(getInitialTheme());
 // Listener do botão
 if (btnTheme) btnTheme.addEventListener("click", toggleTheme);
 
-// (Opcional) reatividade ao sistema
+//reatividade ao sistema
 try {
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
   mq.addEventListener?.("change", (e) => {
